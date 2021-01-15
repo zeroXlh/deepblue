@@ -1,0 +1,94 @@
+server:
+  port: 9998
+  compression:
+    enabled: true
+  servlet:
+    context-path: /
+
+spring:
+  profiles:
+    active: default
+  application:
+    name: back-web
+    abbr: HOPER
+  output:
+    ansi:
+      enabled: detect
+  main:
+    bannerMode: log
+#  mvc:
+#    favicon:
+#      enabled: false
+#    view:
+#      prefix: /WEB-INF/views/
+#      suffix: .jsp
+#    static-path-pattern: /**
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+  
+#  servlet:
+#    multipart:
+#      max-request-size: 1000Mb
+#      max-file-size: 100Mb
+      
+  messages:
+    basename: i18n/messages
+    cache-duration: -1
+    encoding: utf-8
+
+  thymeleaf:
+    enabled: true
+    cache: false
+    check-template: true
+    check-template-location: true
+    mode: HTML5
+    prefix: classpath:/templates/
+    template-resolver-order: 0
+    suffix: .html
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    
+  datasource:
+  
+    druid:
+      
+      type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: com.mysql.cj.jdbc.Driver
+#      url: jdbc:mysql://localhost:3306/deepblue?useUnicode=true&characterEncoding=utf8\
+#            &useSSL=false&allowPublicKeyRetrieval=true 
+      url: jdbc:mysql://120.24.144.22:3306/deepblue?useUnicode=true&characterEncoding=utf8\ 
+            &useSSL=false&allowPublicKeyRetrieval=true 
+      username: deepblue
+      password: 123456
+      testWhileIdle: true
+      validationQuery: SELECT 1
+      filters: stat,wall
+      #配置初始化大小、最小、最大
+      initialSize: 8
+      minIdle: 5
+      maxActive: 30
+      #配置获取连接等待超时的时间
+      maxWait: 60000
+      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      #配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      #打开PSCache，并且指定每个连接上PSCache的大小
+      maxPoolPreparedStatementPerConnectionSize: 20
+#  resources:
+#    add-mappings: true
+#    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+
+mybatis:
+    configuration:
+        map-underscore-to-camel-case: true
+        default-fetch-size: 100
+        default-statement-timeout: 30
+    mapperLocations: classpath:com.hoper.jjs.mapper.**.*.xml
+
+logging:
+  config: classpath:logback.xml
