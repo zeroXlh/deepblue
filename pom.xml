@@ -21,6 +21,7 @@
 		<thymeleaf-layout-dialect.version>2.2.1</thymeleaf-layout-dialect.version>
 		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
 		<mysql.version>8.0.22</mysql.version>
+		<commons-lang3.version>3.11</commons-lang3.version>
 	</properties>  
   
   <modules>

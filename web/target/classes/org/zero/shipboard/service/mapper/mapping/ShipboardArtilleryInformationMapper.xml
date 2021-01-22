@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zero.shipboard.service.mapper.ShipboardArtilleryInformationMapper">
+  <resultMap id="BaseResultMap" type="org.zero.shipboard.model.ShipboardArtilleryInformation">
+    <id column="shell_code" jdbcType="INTEGER" property="shellCode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="scale" jdbcType="CHAR" property="scale" />
+    <result column="hit_cardinal" jdbcType="INTEGER" property="hitCardinal" />
+    <result column="hit_instance" jdbcType="INTEGER" property="hitInstance" />
+    <result column="damage" jdbcType="INTEGER" property="damage" />
+    <result column="firing_rate" jdbcType="DECIMAL" property="firingRate" />
+    <result column="cannonry" jdbcType="INTEGER" property="cannonry" />
+    <result column="ammunition" jdbcType="CHAR" property="ammunition" />
+    <result column="rarity" jdbcType="CHAR" property="rarity" />
+    <result column="reformatory" jdbcType="BIT" property="reformatory" />
+    <result column="enhanced_upper_limit" jdbcType="INTEGER" property="enhancedUpperLimit" />
+    <result column="way_of_gain" jdbcType="VARCHAR" property="wayOfGain" />
+    <result column="apply" jdbcType="VARCHAR" property="apply" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    shell_code, name, scale, hit_cardinal, hit_instance, damage, firing_rate, cannonry, 
+    ammunition, rarity, reformatory, enhanced_upper_limit, way_of_gain, apply
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shipboard_artillery_information
+    where shell_code = #{shellCode,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shipboard_artillery_information
+    where shell_code = #{shellCode,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.zero.shipboard.model.ShipboardArtilleryInformation">
+    insert into shipboard_artillery_information (shell_code, name, scale, 
+      hit_cardinal, hit_instance, damage, 
+      firing_rate, cannonry, ammunition, 
+      rarity, reformatory, enhanced_upper_limit, 
+      way_of_gain, apply)
+    values (#{shellCode,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{scale,jdbcType=CHAR}, 
+      #{hitCardinal,jdbcType=INTEGER}, #{hitInstance,jdbcType=INTEGER}, #{damage,jdbcType=INTEGER}, 
+      #{firingRate,jdbcType=DECIMAL}, #{cannonry,jdbcType=INTEGER}, #{ammunition,jdbcType=CHAR}, 
+      #{rarity,jdbcType=CHAR}, #{reformatory,jdbcType=BIT}, #{enhancedUpperLimit,jdbcType=INTEGER}, 
+      #{wayOfGain,jdbcType=VARCHAR}, #{apply,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.zero.shipboard.model.ShipboardArtilleryInformation">
+    insert into shipboard_artillery_information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shellCode != null">
+        shell_code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="scale != null">
+        scale,
+      </if>
+      <if test="hitCardinal != null">
+        hit_cardinal,
+      </if>
+      <if test="hitInstance != null">
+        hit_instance,
+      </if>
+      <if test="damage != null">
+        damage,
+      </if>
+      <if test="firingRate != null">
+        firing_rate,
+      </if>
+      <if test="cannonry != null">
+        cannonry,
+      </if>
+      <if test="ammunition != null">
+        ammunition,
+      </if>
+      <if test="rarity != null">
+        rarity,
+      </if>
+      <if test="reformatory != null">
+        reformatory,
+      </if>
+      <if test="enhancedUpperLimit != null">
+        enhanced_upper_limit,
+      </if>
+      <if test="wayOfGain != null">
+        way_of_gain,
+      </if>
+      <if test="apply != null">
+        apply,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shellCode != null">
+        #{shellCode,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="scale != null">
+        #{scale,jdbcType=CHAR},
+      </if>
+      <if test="hitCardinal != null">
+        #{hitCardinal,jdbcType=INTEGER},
+      </if>
+      <if test="hitInstance != null">
+        #{hitInstance,jdbcType=INTEGER},
+      </if>
+      <if test="damage != null">
+        #{damage,jdbcType=INTEGER},
+      </if>
+      <if test="firingRate != null">
+        #{firingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="cannonry != null">
+        #{cannonry,jdbcType=INTEGER},
+      </if>
+      <if test="ammunition != null">
+        #{ammunition,jdbcType=CHAR},
+      </if>
+      <if test="rarity != null">
+        #{rarity,jdbcType=CHAR},
+      </if>
+      <if test="reformatory != null">
+        #{reformatory,jdbcType=BIT},
+      </if>
+      <if test="enhancedUpperLimit != null">
+        #{enhancedUpperLimit,jdbcType=INTEGER},
+      </if>
+      <if test="wayOfGain != null">
+        #{wayOfGain,jdbcType=VARCHAR},
+      </if>
+      <if test="apply != null">
+        #{apply,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.zero.shipboard.model.ShipboardArtilleryInformation">
+    update shipboard_artillery_information
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="scale != null">
+        scale = #{scale,jdbcType=CHAR},
+      </if>
+      <if test="hitCardinal != null">
+        hit_cardinal = #{hitCardinal,jdbcType=INTEGER},
+      </if>
+      <if test="hitInstance != null">
+        hit_instance = #{hitInstance,jdbcType=INTEGER},
+      </if>
+      <if test="damage != null">
+        damage = #{damage,jdbcType=INTEGER},
+      </if>
+      <if test="firingRate != null">
+        firing_rate = #{firingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="cannonry != null">
+        cannonry = #{cannonry,jdbcType=INTEGER},
+      </if>
+      <if test="ammunition != null">
+        ammunition = #{ammunition,jdbcType=CHAR},
+      </if>
+      <if test="rarity != null">
+        rarity = #{rarity,jdbcType=CHAR},
+      </if>
+      <if test="reformatory != null">
+        reformatory = #{reformatory,jdbcType=BIT},
+      </if>
+      <if test="enhancedUpperLimit != null">
+        enhanced_upper_limit = #{enhancedUpperLimit,jdbcType=INTEGER},
+      </if>
+      <if test="wayOfGain != null">
+        way_of_gain = #{wayOfGain,jdbcType=VARCHAR},
+      </if>
+      <if test="apply != null">
+        apply = #{apply,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where shell_code = #{shellCode,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.zero.shipboard.model.ShipboardArtilleryInformation">
+    update shipboard_artillery_information
+    set name = #{name,jdbcType=VARCHAR},
+      scale = #{scale,jdbcType=CHAR},
+      hit_cardinal = #{hitCardinal,jdbcType=INTEGER},
+      hit_instance = #{hitInstance,jdbcType=INTEGER},
+      damage = #{damage,jdbcType=INTEGER},
+      firing_rate = #{firingRate,jdbcType=DECIMAL},
+      cannonry = #{cannonry,jdbcType=INTEGER},
+      ammunition = #{ammunition,jdbcType=CHAR},
+      rarity = #{rarity,jdbcType=CHAR},
+      reformatory = #{reformatory,jdbcType=BIT},
+      enhanced_upper_limit = #{enhancedUpperLimit,jdbcType=INTEGER},
+      way_of_gain = #{wayOfGain,jdbcType=VARCHAR},
+      apply = #{apply,jdbcType=VARCHAR}
+    where shell_code = #{shellCode,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="org.zero.shipboard.model.ShipboardArtilleryInformation">
+    <id column="shell_code" jdbcType="INTEGER" property="shellCode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="scale" jdbcType="CHAR" property="scale" />
+    <result column="hit_cardinal" jdbcType="INTEGER" property="hitCardinal" />
+    <result column="hit_instance" jdbcType="INTEGER" property="hitInstance" />
+    <result column="damage" jdbcType="INTEGER" property="damage" />
+    <result column="firing_rate" jdbcType="DECIMAL" property="firingRate" />
+    <result column="cannonry" jdbcType="INTEGER" property="cannonry" />
+    <result column="reformatory" jdbcType="BIT" property="reformatory" />
+    <result column="way_of_gain" jdbcType="VARCHAR" property="wayOfGain" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    shell_code, name, scale, hit_cardinal, hit_instance, damage, firing_rate, cannonry, 
+    reformatory, way_of_gain
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shipboard_artillery_information
+    where shell_code = #{shellCode,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shipboard_artillery_information
+    where shell_code = #{shellCode,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.zero.shipboard.model.ShipboardArtilleryInformation">
+    insert into shipboard_artillery_information (shell_code, name, scale, 
+      hit_cardinal, hit_instance, damage, 
+      firing_rate, cannonry, reformatory, 
+      way_of_gain)
+    values (#{shellCode,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{scale,jdbcType=CHAR}, 
+      #{hitCardinal,jdbcType=INTEGER}, #{hitInstance,jdbcType=INTEGER}, #{damage,jdbcType=INTEGER}, 
+      #{firingRate,jdbcType=DECIMAL}, #{cannonry,jdbcType=INTEGER}, #{reformatory,jdbcType=BIT}, 
+      #{wayOfGain,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.zero.shipboard.model.ShipboardArtilleryInformation">
+    insert into shipboard_artillery_information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shellCode != null">
+        shell_code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="scale != null">
+        scale,
+      </if>
+      <if test="hitCardinal != null">
+        hit_cardinal,
+      </if>
+      <if test="hitInstance != null">
+        hit_instance,
+      </if>
+      <if test="damage != null">
+        damage,
+      </if>
+      <if test="firingRate != null">
+        firing_rate,
+      </if>
+      <if test="cannonry != null">
+        cannonry,
+      </if>
+      <if test="reformatory != null">
+        reformatory,
+      </if>
+      <if test="wayOfGain != null">
+        way_of_gain,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shellCode != null">
+        #{shellCode,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="scale != null">
+        #{scale,jdbcType=CHAR},
+      </if>
+      <if test="hitCardinal != null">
+        #{hitCardinal,jdbcType=INTEGER},
+      </if>
+      <if test="hitInstance != null">
+        #{hitInstance,jdbcType=INTEGER},
+      </if>
+      <if test="damage != null">
+        #{damage,jdbcType=INTEGER},
+      </if>
+      <if test="firingRate != null">
+        #{firingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="cannonry != null">
+        #{cannonry,jdbcType=INTEGER},
+      </if>
+      <if test="reformatory != null">
+        #{reformatory,jdbcType=BIT},
+      </if>
+      <if test="wayOfGain != null">
+        #{wayOfGain,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.zero.shipboard.model.ShipboardArtilleryInformation">
+    update shipboard_artillery_information
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="scale != null">
+        scale = #{scale,jdbcType=CHAR},
+      </if>
+      <if test="hitCardinal != null">
+        hit_cardinal = #{hitCardinal,jdbcType=INTEGER},
+      </if>
+      <if test="hitInstance != null">
+        hit_instance = #{hitInstance,jdbcType=INTEGER},
+      </if>
+      <if test="damage != null">
+        damage = #{damage,jdbcType=INTEGER},
+      </if>
+      <if test="firingRate != null">
+        firing_rate = #{firingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="cannonry != null">
+        cannonry = #{cannonry,jdbcType=INTEGER},
+      </if>
+      <if test="reformatory != null">
+        reformatory = #{reformatory,jdbcType=BIT},
+      </if>
+      <if test="wayOfGain != null">
+        way_of_gain = #{wayOfGain,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where shell_code = #{shellCode,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.zero.shipboard.model.ShipboardArtilleryInformation">
+    update shipboard_artillery_information
+    set name = #{name,jdbcType=VARCHAR},
+      scale = #{scale,jdbcType=CHAR},
+      hit_cardinal = #{hitCardinal,jdbcType=INTEGER},
+      hit_instance = #{hitInstance,jdbcType=INTEGER},
+      damage = #{damage,jdbcType=INTEGER},
+      firing_rate = #{firingRate,jdbcType=DECIMAL},
+      cannonry = #{cannonry,jdbcType=INTEGER},
+      reformatory = #{reformatory,jdbcType=BIT},
+      way_of_gain = #{wayOfGain,jdbcType=VARCHAR}
+    where shell_code = #{shellCode,jdbcType=INTEGER}
+  </update>
+</mapper>

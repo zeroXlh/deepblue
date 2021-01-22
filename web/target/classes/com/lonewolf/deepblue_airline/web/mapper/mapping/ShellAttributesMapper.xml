@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lonewolf.deepblue_airline.web.mapper.ShellAttributesMapper">
+  <resultMap id="BaseResultMap" type="com.lonewolf.deepblue_airline.web.model.ShellAttributes">
+    <id column="shell_code" jdbcType="INTEGER" property="shellCode" />
+    <result column="flight_speed" jdbcType="INTEGER" property="flightSpeed" />
+    <result column="light_armor_ratio" jdbcType="INTEGER" property="lightArmorRatio" />
+    <result column="medium_armor_ratio" jdbcType="INTEGER" property="mediumArmorRatio" />
+    <result column="heavy_armor_ratio" jdbcType="INTEGER" property="heavyArmorRatio" />
+    <result column="spotting_scope" jdbcType="INTEGER" property="spottingScope" />
+    <result column="spotting_angle" jdbcType="INTEGER" property="spottingAngle" />
+    <result column="range_min" jdbcType="INTEGER" property="rangeMin" />
+    <result column="range_max" jdbcType="INTEGER" property="rangeMax" />
+    <result column="intersperse_angle" jdbcType="INTEGER" property="intersperseAngle" />
+    <result column="damage_radius" jdbcType="INTEGER" property="damageRadius" />
+    <result column="intersperse_scope" jdbcType="INTEGER" property="intersperseScope" />
+    <result column="camp" jdbcType="CHAR" property="camp" />
+    <result column="amend_ratio" jdbcType="INTEGER" property="amendRatio" />
+    <result column="damage_type" jdbcType="CHAR" property="damageType" />
+    <result column="attribute_efficiency" jdbcType="INTEGER" property="attributeEfficiency" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    shell_code, flight_speed, light_armor_ratio, medium_armor_ratio, heavy_armor_ratio, 
+    spotting_scope, spotting_angle, range_min, range_max, intersperse_angle, damage_radius, 
+    intersperse_scope, camp, amend_ratio, damage_type, attribute_efficiency
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shell_attributes
+    where shell_code = #{shellCode,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shell_attributes
+    where shell_code = #{shellCode,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lonewolf.deepblue_airline.web.model.ShellAttributes">
+    insert into shell_attributes (shell_code, flight_speed, light_armor_ratio, 
+      medium_armor_ratio, heavy_armor_ratio, spotting_scope, 
+      spotting_angle, range_min, range_max, 
+      intersperse_angle, damage_radius, intersperse_scope, 
+      camp, amend_ratio, damage_type, 
+      attribute_efficiency)
+    values (#{shellCode,jdbcType=INTEGER}, #{flightSpeed,jdbcType=INTEGER}, #{lightArmorRatio,jdbcType=INTEGER}, 
+      #{mediumArmorRatio,jdbcType=INTEGER}, #{heavyArmorRatio,jdbcType=INTEGER}, #{spottingScope,jdbcType=INTEGER}, 
+      #{spottingAngle,jdbcType=INTEGER}, #{rangeMin,jdbcType=INTEGER}, #{rangeMax,jdbcType=INTEGER}, 
+      #{intersperseAngle,jdbcType=INTEGER}, #{damageRadius,jdbcType=INTEGER}, #{intersperseScope,jdbcType=INTEGER}, 
+      #{camp,jdbcType=CHAR}, #{amendRatio,jdbcType=INTEGER}, #{damageType,jdbcType=CHAR}, 
+      #{attributeEfficiency,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lonewolf.deepblue_airline.web.model.ShellAttributes">
+    insert into shell_attributes
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shellCode != null">
+        shell_code,
+      </if>
+      <if test="flightSpeed != null">
+        flight_speed,
+      </if>
+      <if test="lightArmorRatio != null">
+        light_armor_ratio,
+      </if>
+      <if test="mediumArmorRatio != null">
+        medium_armor_ratio,
+      </if>
+      <if test="heavyArmorRatio != null">
+        heavy_armor_ratio,
+      </if>
+      <if test="spottingScope != null">
+        spotting_scope,
+      </if>
+      <if test="spottingAngle != null">
+        spotting_angle,
+      </if>
+      <if test="rangeMin != null">
+        range_min,
+      </if>
+      <if test="rangeMax != null">
+        range_max,
+      </if>
+      <if test="intersperseAngle != null">
+        intersperse_angle,
+      </if>
+      <if test="damageRadius != null">
+        damage_radius,
+      </if>
+      <if test="intersperseScope != null">
+        intersperse_scope,
+      </if>
+      <if test="camp != null">
+        camp,
+      </if>
+      <if test="amendRatio != null">
+        amend_ratio,
+      </if>
+      <if test="damageType != null">
+        damage_type,
+      </if>
+      <if test="attributeEfficiency != null">
+        attribute_efficiency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shellCode != null">
+        #{shellCode,jdbcType=INTEGER},
+      </if>
+      <if test="flightSpeed != null">
+        #{flightSpeed,jdbcType=INTEGER},
+      </if>
+      <if test="lightArmorRatio != null">
+        #{lightArmorRatio,jdbcType=INTEGER},
+      </if>
+      <if test="mediumArmorRatio != null">
+        #{mediumArmorRatio,jdbcType=INTEGER},
+      </if>
+      <if test="heavyArmorRatio != null">
+        #{heavyArmorRatio,jdbcType=INTEGER},
+      </if>
+      <if test="spottingScope != null">
+        #{spottingScope,jdbcType=INTEGER},
+      </if>
+      <if test="spottingAngle != null">
+        #{spottingAngle,jdbcType=INTEGER},
+      </if>
+      <if test="rangeMin != null">
+        #{rangeMin,jdbcType=INTEGER},
+      </if>
+      <if test="rangeMax != null">
+        #{rangeMax,jdbcType=INTEGER},
+      </if>
+      <if test="intersperseAngle != null">
+        #{intersperseAngle,jdbcType=INTEGER},
+      </if>
+      <if test="damageRadius != null">
+        #{damageRadius,jdbcType=INTEGER},
+      </if>
+      <if test="intersperseScope != null">
+        #{intersperseScope,jdbcType=INTEGER},
+      </if>
+      <if test="camp != null">
+        #{camp,jdbcType=CHAR},
+      </if>
+      <if test="amendRatio != null">
+        #{amendRatio,jdbcType=INTEGER},
+      </if>
+      <if test="damageType != null">
+        #{damageType,jdbcType=CHAR},
+      </if>
+      <if test="attributeEfficiency != null">
+        #{attributeEfficiency,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lonewolf.deepblue_airline.web.model.ShellAttributes">
+    update shell_attributes
+    <set>
+      <if test="flightSpeed != null">
+        flight_speed = #{flightSpeed,jdbcType=INTEGER},
+      </if>
+      <if test="lightArmorRatio != null">
+        light_armor_ratio = #{lightArmorRatio,jdbcType=INTEGER},
+      </if>
+      <if test="mediumArmorRatio != null">
+        medium_armor_ratio = #{mediumArmorRatio,jdbcType=INTEGER},
+      </if>
+      <if test="heavyArmorRatio != null">
+        heavy_armor_ratio = #{heavyArmorRatio,jdbcType=INTEGER},
+      </if>
+      <if test="spottingScope != null">
+        spotting_scope = #{spottingScope,jdbcType=INTEGER},
+      </if>
+      <if test="spottingAngle != null">
+        spotting_angle = #{spottingAngle,jdbcType=INTEGER},
+      </if>
+      <if test="rangeMin != null">
+        range_min = #{rangeMin,jdbcType=INTEGER},
+      </if>
+      <if test="rangeMax != null">
+        range_max = #{rangeMax,jdbcType=INTEGER},
+      </if>
+      <if test="intersperseAngle != null">
+        intersperse_angle = #{intersperseAngle,jdbcType=INTEGER},
+      </if>
+      <if test="damageRadius != null">
+        damage_radius = #{damageRadius,jdbcType=INTEGER},
+      </if>
+      <if test="intersperseScope != null">
+        intersperse_scope = #{intersperseScope,jdbcType=INTEGER},
+      </if>
+      <if test="camp != null">
+        camp = #{camp,jdbcType=CHAR},
+      </if>
+      <if test="amendRatio != null">
+        amend_ratio = #{amendRatio,jdbcType=INTEGER},
+      </if>
+      <if test="damageType != null">
+        damage_type = #{damageType,jdbcType=CHAR},
+      </if>
+      <if test="attributeEfficiency != null">
+        attribute_efficiency = #{attributeEfficiency,jdbcType=INTEGER},
+      </if>
+    </set>
+    where shell_code = #{shellCode,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lonewolf.deepblue_airline.web.model.ShellAttributes">
+    update shell_attributes
+    set flight_speed = #{flightSpeed,jdbcType=INTEGER},
+      light_armor_ratio = #{lightArmorRatio,jdbcType=INTEGER},
+      medium_armor_ratio = #{mediumArmorRatio,jdbcType=INTEGER},
+      heavy_armor_ratio = #{heavyArmorRatio,jdbcType=INTEGER},
+      spotting_scope = #{spottingScope,jdbcType=INTEGER},
+      spotting_angle = #{spottingAngle,jdbcType=INTEGER},
+      range_min = #{rangeMin,jdbcType=INTEGER},
+      range_max = #{rangeMax,jdbcType=INTEGER},
+      intersperse_angle = #{intersperseAngle,jdbcType=INTEGER},
+      damage_radius = #{damageRadius,jdbcType=INTEGER},
+      intersperse_scope = #{intersperseScope,jdbcType=INTEGER},
+      camp = #{camp,jdbcType=CHAR},
+      amend_ratio = #{amendRatio,jdbcType=INTEGER},
+      damage_type = #{damageType,jdbcType=CHAR},
+      attribute_efficiency = #{attributeEfficiency,jdbcType=INTEGER}
+    where shell_code = #{shellCode,jdbcType=INTEGER}
+  </update>
+</mapper>
