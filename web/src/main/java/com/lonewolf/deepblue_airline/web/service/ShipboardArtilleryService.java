@@ -56,7 +56,7 @@ public class ShipboardArtilleryService {
 	public List<ShipboardArtilleryInformation> selectByBean(ShipboardArtilleryInformation information) {
 		// Objects.requireNonNull(information, "shellCode为null");
 		// return mapper.selectByPrimaryKey(shellCode);
-		return null;
+		return mapper.selectByBean(information);
 	}
 
 	@Transactional(rollbackFor = Exception.class)

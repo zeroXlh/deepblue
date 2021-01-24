@@ -49,7 +49,7 @@ function loadMenu() {
 
 //登出
 function logout() {
-	location.replace("/hoper/backweb/logout");
+	location.replace("/lone-wolf/web/logout");
 }
 
 //重置参数

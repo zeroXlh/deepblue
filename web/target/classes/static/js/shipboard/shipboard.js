@@ -2,50 +2,54 @@
  * 
  */
 $(function () {
+	pcg_fun.loadCommonData("#scale_q", scaleCombo, "value", "text", null);
+	pcg_fun.loadCommonData("#ammunition_q", ammunitionCombo, "value", "text", null);
+	pcg_fun.loadCommonData("#reformatory_q", booleanCombo, "value", "text", null);
 	loadTable();
 	
-	jQuery.get("/hoper/backweb/productSubjectList", {
-		
-	}, function(data) {
-    	if (1 == data.code) {
-    		$("#productSubjectId").empty();
-    		$("#productSubjectIdQuery").empty();
-    		var v = data.data;
-    		var options = "<option value='' selected='selected'>---请选择---</option>";
-    		for(var i = 0;i < v.length;i++){
-    			options += "<option value='" + v[i]["id"]+ "'>" + v[i]["productName"] + "</option>";
-    		}
-    		$("#productSubjectId").html(options);
-    		$("#productSubjectIdQuery").html(options);
-    		
-    		if (!pcg_fun.isEmpty(productSubjectIdParam)) {
-    			$("#productSubjectIdQuery").val(productSubjectIdParam);
-    			$("#productSubjectIdQuery").attr("disabled", true);
-    			$("#reback").show();
-    			search();
-    		}
-    	} else {
-    		alert("加载产品科目下拉框参数失败");
-    	}
-    },"json");
+//	openDialog();
+//	jQuery.get("/hoper/backweb/productSubjectList", {
+//		
+//	}, function(data) {
+//    	if (1 == data.code) {
+//    		$("#productSubjectId").empty();
+//    		$("#productSubjectIdQuery").empty();
+//    		var v = data.data;
+//    		var options = "<option value='' selected='selected'>---请选择---</option>";
+//    		for(var i = 0;i < v.length;i++){
+//    			options += "<option value='" + v[i]["id"]+ "'>" + v[i]["productName"] + "</option>";
+//    		}
+//    		$("#productSubjectId").html(options);
+//    		$("#productSubjectIdQuery").html(options);
+//    		
+//    		if (!pcg_fun.isEmpty(productSubjectIdParam)) {
+//    			$("#productSubjectIdQuery").val(productSubjectIdParam);
+//    			$("#productSubjectIdQuery").attr("disabled", true);
+//    			$("#reback").show();
+//    			search();
+//    		}
+//    	} else {
+//    		alert("加载产品科目下拉框参数失败");
+//    	}
+//    },"json");
 	
-	jQuery.get("/hoper/backweb/jjsPaymentAccount/getAccounts", {
-		
-	}, function(data) {
-    	if (1 == data.code) {
-    		$("#paymentAccount").empty();
-    		var v = data.data;
-    		var options = "<option value='' selected='selected'>---请选择---</option>";
-    		for(var i = 0;i < v.length;i++){
-    			options += "<option value='" + v[i]["accountCode"]+ "'>" + v[i]["bankInfo"] + "-" + v[i]["bankCode"] + "</option>";
-    		}
-    		$("#paymentAccount").html(options);
-    	} else {
-    		alert("加载打款账户信息失败");
-    	}
-    },"json");
+//	jQuery.get("/hoper/backweb/jjsPaymentAccount/getAccounts", {
+//		
+//	}, function(data) {
+//    	if (1 == data.code) {
+//    		$("#paymentAccount").empty();
+//    		var v = data.data;
+//    		var options = "<option value='' selected='selected'>---请选择---</option>";
+//    		for(var i = 0;i < v.length;i++){
+//    			options += "<option value='" + v[i]["accountCode"]+ "'>" + v[i]["bankInfo"] + "-" + v[i]["bankCode"] + "</option>";
+//    		}
+//    		$("#paymentAccount").html(options);
+//    	} else {
+//    		alert("加载打款账户信息失败");
+//    	}
+//    },"json");
 	
-	pcg_fun.loadCommonData("#statusQuery", statusCommonJson, "value", "text");
+//	pcg_fun.loadCommonData("#statusQuery", statusCommonJson, "value", "text");
 });
 
 var columns = [
@@ -58,15 +62,26 @@ var columns = [
     	field: 'name',
     	title: '舰炮名称',
     	align : "center" ,
+	}, {
+		field: 'rarity',
+		title: '稀有度',
+		align : "center"
+//    	formatter : financeFormat
     }, {
         field: 'scale',
         title: '规模',
-        align : "center" 
+        align : "center",
+        formatter : scaleFormat
     }, {
         field: 'damage',
         title: '伤害',
     	align : "center",
     	formatter : danageFormat
+    }, {
+    	field: 'firingRate',
+    	title: '标准射速',
+    	align : "center",
+    	formatter : firingRateFormat
     }, {
     	field: 'cannonry',
     	title: '炮击',
@@ -74,22 +89,17 @@ var columns = [
     }, {
     	field: 'ammunition',
     	title: '炮弹',
-    	align : "center"
-    }, {
-    	field: 'rarity',
-    	title: '稀有度',
     	align : "center",
-    	formatter : financeFormat
+    	formatter : ammunitionFormat
     }, {
     	field: 'reformatory',
     	title: '可改造',
-    	align : "center" ,
-    	formatter : annualizedIncomeFormat
-    }, {
-    	field: 'enhancedUpperLimit',//deadlineType
-    	title: '强化上限',
     	align : "center",
-    	formatter : deadlineFormat
+    	formatter : reformatoryFormat
+    }, {
+    	field: 'enhancedUpperLimit',
+    	title: '强化上限',
+    	align : "center"
     }, {
     	field: 'apply',
     	title: '适用舰种',
@@ -107,7 +117,7 @@ var columns = [
 
 function loadTable() {
 	$('#tb').bootstrapTable({
-		url : "/lone-wolf/shipboard/page",
+		url : "/lone-wolf/web/shipboard/page",
         dataType: "json",
         method: "GET",
         striped: true,//是否显示行间隔色
@@ -138,8 +148,8 @@ function loadTable() {
 function search_shipboard() {
 	var options = $("#tb").bootstrapTable('getOptions');
 	var params = queryParams(options);
-	if (!pcg_fun.isEmpty(productSubjectIdParam))
-		params.productSubjectId = productSubjectIdParam;
+//	if (!pcg_fun.isEmpty(productSubjectIdParam))
+//		params.productSubjectId = productSubjectIdParam;
 	$("#tb").bootstrapTable('refresh', {query : params});
 }
 
@@ -196,39 +206,9 @@ function openDialog() {
 	$("#raiseBeginTime").attr("disabled", false);
 	$("#raiseEndTime").attr("disabled", false);
 	
-	$("#myModalLabel").text("添加产品");
+	$("#myModalLabel").text("新增舰炮信息");
 	$('#productModal').modal();
 }
-
-function putOnProduct(id) {
-    jQuery.get("/hoper/backweb/product/putOn", {
-        "id" : id
-    }, function(data) {
-        if (1 == data.code) {
-            $("#tb").bootstrapTable('refresh');
-            alert('产品上架成功!');
-        } else if (0 == data.code) {
-            alert(data.msg);
-        } else {
-            alert(data);
-        }
-    }, "json");
-};
-
-function pullOffProduct(id) {
-    jQuery.get("/hoper/backweb/product/pullOff", {
-        "id" : id
-    }, function(data) {
-        if (1 == data.code) {
-            $("#tb").bootstrapTable('refresh');
-            alert('产品下架成功!');
-        } else if (0 == data.code) {
-            alert(data.msg);
-        } else {
-            alert(data);
-        }
-    }, "json");
-};
 
 function openUpdDialog(id) {
 	jQuery.get("/hoper/backweb/getProduct", {
@@ -260,49 +240,90 @@ function openUpdDialog(id) {
 	}, "json");
 }
 
-function saveProduct() {
+function loadData() {
+	$("#product_form").populateForm({
+		"name" : "203mm连装炮T3",
+		"scale" : "S",
+		"hitCardinal" : "26",
+		"hitInstance" : "4",
+		"firingRate" : "8.85",
+		"cannonry" : "25",
+		"ammunition" : "HE",
+		"reformatory" : "1",
+		"rarity" : "CRA",
+		"cannonry" : "25",
+		"enhancedUpperLimit" : "10",
+		"shellAttributes.flightSpeed" : "16",
+		"shellAttributes.lightArmorRatio" : "135",
+		"shellAttributes.mediumArmorRatio" : "95",
+		"shellAttributes.heavyArmorRatio" : "70",
+		"shellAttributes.spottingScope" : "70",
+		"shellAttributes.spottingAngle" : "40",
+		"shellAttributes.rangeMin" : "40",
+		"shellAttributes.rangeMax" : "60",
+		"shellAttributes.intersperseAngle" : "12",
+		"shellAttributes.camp" : "ZY",
+		"shellAttributes.amendRatio" : "110",
+		"shellAttributes.damageType" : "炮击",
+		"shellAttributes.attributeEfficiency" : "100"
+	});
+}
+
+function save_shipboard() {
 	if (!$("#product_form").valid()) {
 		return;
 	}
 	var json = $("#product_form").serializeJson();
-	var fileVal = $("#file").val();
+//	var fileVal = $("#file").val();
 	var url =  "";
-	if (pcg_fun.isEmpty(json.id)) {
-		url = "/hoper/backweb/addProduct";
+	if (pcg_fun.isEmpty(json.shellCode)) {
+		url = "/lone-wolf/web/shipboard/add";
 //		if (pcg_fun.isEmpty(fileVal)) {
 //			alert("banner图片不能为空");
 //			return;
 //		}
 	} else {
-		url = "/hoper/backweb/updateProduct";
+		url = "/lone-wolf/web/shipboard/update";
 	}
-	json.annualizedIncome = (json.annualizedIncome / 100).toFixed(2, 10) ;
+//	json.annualizedIncome = (json.annualizedIncome / 100).toFixed(2, 10) ;
 	
 	$("#save_bt").attr("disabled", true);
-	 $.ajaxFileUpload({
-		 url : url,
-		 type : 'post',
-		 secureuri : false, // 一般设置为false
-		 fileElementId : 'file', // 上传文件的id、name属性名
-		 dataType : 'json', // 返回值类型，一般设置为json、application/json
-		 data : json,
-		 success : function(data, status) {
-			 $("#save_bt").attr("disabled", false);
-			 if (1 == data.code) {
-				$('#productModal').modal('hide');
-				$("#tb").bootstrapTable('refresh');
-				alert("success");
-			 } else if (0 == data.code) {
-				 alert(data.msg);
-			 } else {
-				 alert(data);
-			 }
-		 },
-		 error : function(data, status, e) {
-			 $("#save_bt").attr("disabled", false);
-			 alert(e);
+	jQuery.post(url, json, function(data) {
+		if (1 == data.code) {
+			$('#productModal').modal('hide');
+			$("#tb").bootstrapTable('refresh');
+			alert(data.msg);
+		} else if (0 == data.code) {
+			alert(data.msg);
+		} else {
+			alert(data);
 		}
-	});
+	}, "json");
+	
+//	 $.ajaxFileUpload({
+//		 url : url,
+//		 type : 'post',
+//		 secureuri : false, // 一般设置为false
+//		 fileElementId : 'file', // 上传文件的id、name属性名
+//		 dataType : 'json', // 返回值类型，一般设置为json、application/json
+//		 data : json,
+//		 success : function(data, status) {
+//			 $("#save_bt").attr("disabled", false);
+//			 if (1 == data.code) {
+//				$('#productModal').modal('hide');
+//				$("#tb").bootstrapTable('refresh');
+//				alert("success");
+//			 } else if (0 == data.code) {
+//				 alert(data.msg);
+//			 } else {
+//				 alert(data);
+//			 }
+//		 },
+//		 error : function(data, status, e) {
+//			 $("#save_bt").attr("disabled", false);
+//			 alert(e);
+//		}
+//	});
 	
 //	myAjaxPost(url, JSON.stringify(json), function(data) {
 //		if (1 == data.code) {
@@ -370,34 +391,55 @@ var statusFormatJson = {
 	3 : "已完成"
 };
 
-function statusFormat(value, row, index) {
-	if (pcg_fun.isEmpty(value))
-		return "-";
-	var rs = statusFormatJson[value];
-	return pcg_fun.isEmpty(rs) ? value : rs;
-}
-var payTypeFormatJson = {
-		1 : "季度付息，到期还本",
-		2 : "到期还本付息"
-	};
 function danageFormat(value, row, index) {
 	if (pcg_fun.isEmpty(value))
 		return "-";
-//	var rs = payTypeFormatJson[value];
-//	return pcg_fun.isEmpty(rs) ? value : rs;
-	return value;
+	var rs = "";
+	return rs.concat(row.hitCardinal, "*", row.hitInstance, "(", value, ")");
 }
 
-function displayFormat(value, row, index) {
+function reformatoryFormat(value, row, index) {
 	if (pcg_fun.isEmpty(value))
 		return "-";
-	if ("Y" == value)
-		return "是";
-	else if ("N" == value)
-		return "否";
-	return value;
+	return value ? "是" : "否";
 }
 
-function reBack() {
-	refreshto("/hoper/backweb/product/productSubject");
+var ammunitionFormatJson = {
+	"NA":"通常弹","AP":"穿甲弹","HE":"高爆弹","OT":"其它"	
+};
+function ammunitionFormat(value, row, index) {
+//	if (pcg_fun.isEmpty(value))
+//		return "-";
+//	var rs = ammunitionFormatJson[value];
+//	return pcg_fun.isEmpty(rs) ? value : rs;
+	return commonFormat(value, ammunitionFormatJson);
 }
+var scaleFormatJson = {
+		"S":"小型","M":"中型","L":"大型"	
+};
+function scaleFormat(value, row, index) {
+	return commonFormat(value, scaleFormatJson);
+}
+
+function firingRateFormat(value, row, index) {
+	if (pcg_fun.isEmpty(value))
+		return "-";
+	return value + "s/轮";
+}
+
+//function reBack() {
+//	refreshto("/hoper/backweb/product/productSubject");
+//}
+
+var scaleCombo = [
+	{"value" : "S", "text" : "小型"},
+	{"value" : "M", "text" : "中型"},
+	{"value" : "L", "text" : "大型"}
+	];
+
+var ammunitionCombo = [
+	{"value" : "NA", "text" : "通常弹"},
+	{"value" : "AP", "text" : "穿甲弹"},
+	{"value" : "HE", "text" : "高爆弹"},
+	{"value" : "OT", "text" : "其它"}
+	];

@@ -87,7 +87,7 @@ mybatis:
         map-underscore-to-camel-case: true
         default-fetch-size: 100
         default-statement-timeout: 30
-    mapperLocations: classpath:com.hoper.jjs.mapper.**.*.xml
+    mapperLocations: classpath:com/lonewolf/deepblue_airline/web/mapper/**/*.xml
 
 logging:
   config: classpath:logback.xml
