@@ -17,12 +17,12 @@
     <result column="camp" jdbcType="CHAR" property="camp" />
     <result column="amend_ratio" jdbcType="INTEGER" property="amendRatio" />
     <result column="damage_type" jdbcType="CHAR" property="damageType" />
-    <result column="attribute_efficiency" jdbcType="INTEGER" property="attributeEfficiency" />
+    <result column="efficiency" jdbcType="INTEGER" property="efficiency" />
   </resultMap>
   <sql id="Base_Column_List">
     shell_code, flight_speed, light_armor_ratio, medium_armor_ratio, heavy_armor_ratio, 
     spotting_scope, spotting_angle, range_min, range_max, intersperse_angle, damage_radius, 
-    intersperse_scope, camp, amend_ratio, damage_type, attribute_efficiency
+    intersperse_scope, camp, amend_ratio, damage_type, efficiency
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -40,13 +40,13 @@
       spotting_angle, range_min, range_max, 
       intersperse_angle, damage_radius, intersperse_scope, 
       camp, amend_ratio, damage_type, 
-      attribute_efficiency)
+      efficiency)
     values (#{shellCode,jdbcType=INTEGER}, #{flightSpeed,jdbcType=INTEGER}, #{lightArmorRatio,jdbcType=INTEGER}, 
       #{mediumArmorRatio,jdbcType=INTEGER}, #{heavyArmorRatio,jdbcType=INTEGER}, #{spottingScope,jdbcType=INTEGER}, 
       #{spottingAngle,jdbcType=INTEGER}, #{rangeMin,jdbcType=INTEGER}, #{rangeMax,jdbcType=INTEGER}, 
       #{intersperseAngle,jdbcType=INTEGER}, #{damageRadius,jdbcType=INTEGER}, #{intersperseScope,jdbcType=INTEGER}, 
       #{camp,jdbcType=CHAR}, #{amendRatio,jdbcType=INTEGER}, #{damageType,jdbcType=CHAR}, 
-      #{attributeEfficiency,jdbcType=INTEGER})
+      #{efficiency,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.lonewolf.deepblue_airline.web.model.ShellAttributes">
     insert into shell_attributes
@@ -96,8 +96,8 @@
       <if test="damageType != null">
         damage_type,
       </if>
-      <if test="attributeEfficiency != null">
-        attribute_efficiency,
+      <if test="efficiency != null">
+        efficiency,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -146,8 +146,8 @@
       <if test="damageType != null">
         #{damageType,jdbcType=CHAR},
       </if>
-      <if test="attributeEfficiency != null">
-        #{attributeEfficiency,jdbcType=INTEGER},
+      <if test="efficiency != null">
+        #{efficiency,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -196,8 +196,8 @@
       <if test="damageType != null">
         damage_type = #{damageType,jdbcType=CHAR},
       </if>
-      <if test="attributeEfficiency != null">
-        attribute_efficiency = #{attributeEfficiency,jdbcType=INTEGER},
+      <if test="efficiency != null">
+        efficiency = #{efficiency,jdbcType=INTEGER},
       </if>
     </set>
     where shell_code = #{shellCode,jdbcType=INTEGER}
@@ -218,7 +218,7 @@
       camp = #{camp,jdbcType=CHAR},
       amend_ratio = #{amendRatio,jdbcType=INTEGER},
       damage_type = #{damageType,jdbcType=CHAR},
-      attribute_efficiency = #{attributeEfficiency,jdbcType=INTEGER}
+      efficiency = #{efficiency,jdbcType=INTEGER}
     where shell_code = #{shellCode,jdbcType=INTEGER}
   </update>
 </mapper>

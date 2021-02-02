@@ -7,21 +7,31 @@ public class ShipboardArtilleryInformation {
 
     private String name;
 
+    private String rarity;
+
     private String scale;
 
-    private Integer hitCardinal;
+    private Integer dph;
 
-    private Integer hitInstance;
+    private Integer fullDph;
+
+    private Integer hit;
 
     private Integer damage;
 
+    private Integer fullDamage;
+
     private BigDecimal firingRate;
+
+    private BigDecimal fullFiringRate;
+
+    private BigDecimal delay;
 
     private Integer cannonry;
 
-    private String ammunition;
+    private Integer antiaircraft;
 
-    private String rarity;
+    private String ammunition;
 
     private Boolean reformatory;
 
@@ -30,6 +40,10 @@ public class ShipboardArtilleryInformation {
     private String wayOfGain;
 
     private String apply;
+
+    private String box;
+
+    private String esignDrawingSite;
 
     public Integer getShellCode() {
         return shellCode;
@@ -47,6 +61,14 @@ public class ShipboardArtilleryInformation {
         this.name = name == null ? null : name.trim();
     }
 
+    public String getRarity() {
+        return rarity;
+    }
+
+    public void setRarity(String rarity) {
+        this.rarity = rarity == null ? null : rarity.trim();
+    }
+
     public String getScale() {
         return scale;
     }
@@ -55,20 +77,28 @@ public class ShipboardArtilleryInformation {
         this.scale = scale == null ? null : scale.trim();
     }
 
-    public Integer getHitCardinal() {
-        return hitCardinal;
+    public Integer getDph() {
+        return dph;
     }
 
-    public void setHitCardinal(Integer hitCardinal) {
-        this.hitCardinal = hitCardinal;
+    public void setDph(Integer dph) {
+        this.dph = dph;
     }
 
-    public Integer getHitInstance() {
-        return hitInstance;
+    public Integer getFullDph() {
+        return fullDph;
     }
 
-    public void setHitInstance(Integer hitInstance) {
-        this.hitInstance = hitInstance;
+    public void setFullDph(Integer fullDph) {
+        this.fullDph = fullDph;
+    }
+
+    public Integer getHit() {
+        return hit;
+    }
+
+    public void setHit(Integer hit) {
+        this.hit = hit;
     }
 
     public Integer getDamage() {
@@ -79,12 +109,36 @@ public class ShipboardArtilleryInformation {
         this.damage = damage;
     }
 
+    public Integer getFullDamage() {
+        return fullDamage;
+    }
+
+    public void setFullDamage(Integer fullDamage) {
+        this.fullDamage = fullDamage;
+    }
+
     public BigDecimal getFiringRate() {
         return firingRate;
     }
 
     public void setFiringRate(BigDecimal firingRate) {
         this.firingRate = firingRate;
+    }
+
+    public BigDecimal getFullFiringRate() {
+        return fullFiringRate;
+    }
+
+    public void setFullFiringRate(BigDecimal fullFiringRate) {
+        this.fullFiringRate = fullFiringRate;
+    }
+
+    public BigDecimal getDelay() {
+        return delay;
+    }
+
+    public void setDelay(BigDecimal delay) {
+        this.delay = delay;
     }
 
     public Integer getCannonry() {
@@ -95,20 +149,20 @@ public class ShipboardArtilleryInformation {
         this.cannonry = cannonry;
     }
 
+    public Integer getAntiaircraft() {
+        return antiaircraft;
+    }
+
+    public void setAntiaircraft(Integer antiaircraft) {
+        this.antiaircraft = antiaircraft;
+    }
+
     public String getAmmunition() {
         return ammunition;
     }
 
     public void setAmmunition(String ammunition) {
         this.ammunition = ammunition == null ? null : ammunition.trim();
-    }
-
-    public String getRarity() {
-        return rarity;
-    }
-
-    public void setRarity(String rarity) {
-        this.rarity = rarity == null ? null : rarity.trim();
     }
 
     public Boolean getReformatory() {
@@ -141,5 +195,21 @@ public class ShipboardArtilleryInformation {
 
     public void setApply(String apply) {
         this.apply = apply == null ? null : apply.trim();
+    }
+
+    public String getBox() {
+        return box;
+    }
+
+    public void setBox(String box) {
+        this.box = box == null ? null : box.trim();
+    }
+
+    public String getEsignDrawingSite() {
+        return esignDrawingSite;
+    }
+
+    public void setEsignDrawingSite(String esignDrawingSite) {
+        this.esignDrawingSite = esignDrawingSite == null ? null : esignDrawingSite.trim();
     }
 }

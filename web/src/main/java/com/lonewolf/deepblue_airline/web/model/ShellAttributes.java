@@ -31,7 +31,7 @@ public class ShellAttributes {
 
     private String damageType;
 
-    private Integer attributeEfficiency;
+    private Integer efficiency;
 
     public Integer getShellCode() {
         return shellCode;
@@ -153,11 +153,11 @@ public class ShellAttributes {
         this.damageType = damageType == null ? null : damageType.trim();
     }
 
-    public Integer getAttributeEfficiency() {
-        return attributeEfficiency;
+    public Integer getEfficiency() {
+        return efficiency;
     }
 
-    public void setAttributeEfficiency(Integer attributeEfficiency) {
-        this.attributeEfficiency = attributeEfficiency;
+    public void setEfficiency(Integer efficiency) {
+        this.efficiency = efficiency;
     }
 }

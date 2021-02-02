@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lonewolf.deepblue_airline.web.mapper.AirDefenseArtilleryInfoMapper">
+  <resultMap id="BaseResultMap" type="com.lonewolf.deepblue_airline.web.model.AirDefenseArtilleryInfo">
+    <id column="air_defense_code" jdbcType="INTEGER" property="airDefenseCode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="antiaircraft" jdbcType="INTEGER" property="antiaircraft" />
+    <result column="damage" jdbcType="INTEGER" property="damage" />
+    <result column="full_damage" jdbcType="INTEGER" property="fullDamage" />
+    <result column="firing_rate" jdbcType="DECIMAL" property="firingRate" />
+    <result column="full_firing_rate" jdbcType="DECIMAL" property="fullFiringRate" />
+    <result column="enhanced_upper_limit" jdbcType="INTEGER" property="enhancedUpperLimit" />
+    <result column="spotting_scope" jdbcType="INTEGER" property="spottingScope" />
+    <result column="spotting_angle" jdbcType="INTEGER" property="spottingAngle" />
+    <result column="camp" jdbcType="CHAR" property="camp" />
+    <result column="amend_ratio" jdbcType="INTEGER" property="amendRatio" />
+    <result column="esign_drawing_site" jdbcType="VARCHAR" property="esignDrawingSite" />
+    <result column="reformatory" jdbcType="BIT" property="reformatory" />
+    <result column="box" jdbcType="VARCHAR" property="box" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    air_defense_code, name, antiaircraft, damage, full_damage, firing_rate, full_firing_rate, 
+    enhanced_upper_limit, spotting_scope, spotting_angle, camp, amend_ratio, esign_drawing_site, 
+    reformatory, box
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from air_defense_artillery_info
+    where air_defense_code = #{airDefenseCode,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from air_defense_artillery_info
+    where air_defense_code = #{airDefenseCode,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lonewolf.deepblue_airline.web.model.AirDefenseArtilleryInfo">
+    insert into air_defense_artillery_info (air_defense_code, name, antiaircraft, 
+      damage, full_damage, firing_rate, 
+      full_firing_rate, enhanced_upper_limit, spotting_scope, 
+      spotting_angle, camp, amend_ratio, 
+      esign_drawing_site, reformatory, box
+      )
+    values (#{airDefenseCode,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{antiaircraft,jdbcType=INTEGER}, 
+      #{damage,jdbcType=INTEGER}, #{fullDamage,jdbcType=INTEGER}, #{firingRate,jdbcType=DECIMAL}, 
+      #{fullFiringRate,jdbcType=DECIMAL}, #{enhancedUpperLimit,jdbcType=INTEGER}, #{spottingScope,jdbcType=INTEGER}, 
+      #{spottingAngle,jdbcType=INTEGER}, #{camp,jdbcType=CHAR}, #{amendRatio,jdbcType=INTEGER}, 
+      #{esignDrawingSite,jdbcType=VARCHAR}, #{reformatory,jdbcType=BIT}, #{box,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lonewolf.deepblue_airline.web.model.AirDefenseArtilleryInfo">
+    insert into air_defense_artillery_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="airDefenseCode != null">
+        air_defense_code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="antiaircraft != null">
+        antiaircraft,
+      </if>
+      <if test="damage != null">
+        damage,
+      </if>
+      <if test="fullDamage != null">
+        full_damage,
+      </if>
+      <if test="firingRate != null">
+        firing_rate,
+      </if>
+      <if test="fullFiringRate != null">
+        full_firing_rate,
+      </if>
+      <if test="enhancedUpperLimit != null">
+        enhanced_upper_limit,
+      </if>
+      <if test="spottingScope != null">
+        spotting_scope,
+      </if>
+      <if test="spottingAngle != null">
+        spotting_angle,
+      </if>
+      <if test="camp != null">
+        camp,
+      </if>
+      <if test="amendRatio != null">
+        amend_ratio,
+      </if>
+      <if test="esignDrawingSite != null">
+        esign_drawing_site,
+      </if>
+      <if test="reformatory != null">
+        reformatory,
+      </if>
+      <if test="box != null">
+        box,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="airDefenseCode != null">
+        #{airDefenseCode,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="antiaircraft != null">
+        #{antiaircraft,jdbcType=INTEGER},
+      </if>
+      <if test="damage != null">
+        #{damage,jdbcType=INTEGER},
+      </if>
+      <if test="fullDamage != null">
+        #{fullDamage,jdbcType=INTEGER},
+      </if>
+      <if test="firingRate != null">
+        #{firingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="fullFiringRate != null">
+        #{fullFiringRate,jdbcType=DECIMAL},
+      </if>
+      <if test="enhancedUpperLimit != null">
+        #{enhancedUpperLimit,jdbcType=INTEGER},
+      </if>
+      <if test="spottingScope != null">
+        #{spottingScope,jdbcType=INTEGER},
+      </if>
+      <if test="spottingAngle != null">
+        #{spottingAngle,jdbcType=INTEGER},
+      </if>
+      <if test="camp != null">
+        #{camp,jdbcType=CHAR},
+      </if>
+      <if test="amendRatio != null">
+        #{amendRatio,jdbcType=INTEGER},
+      </if>
+      <if test="esignDrawingSite != null">
+        #{esignDrawingSite,jdbcType=VARCHAR},
+      </if>
+      <if test="reformatory != null">
+        #{reformatory,jdbcType=BIT},
+      </if>
+      <if test="box != null">
+        #{box,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lonewolf.deepblue_airline.web.model.AirDefenseArtilleryInfo">
+    update air_defense_artillery_info
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="antiaircraft != null">
+        antiaircraft = #{antiaircraft,jdbcType=INTEGER},
+      </if>
+      <if test="damage != null">
+        damage = #{damage,jdbcType=INTEGER},
+      </if>
+      <if test="fullDamage != null">
+        full_damage = #{fullDamage,jdbcType=INTEGER},
+      </if>
+      <if test="firingRate != null">
+        firing_rate = #{firingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="fullFiringRate != null">
+        full_firing_rate = #{fullFiringRate,jdbcType=DECIMAL},
+      </if>
+      <if test="enhancedUpperLimit != null">
+        enhanced_upper_limit = #{enhancedUpperLimit,jdbcType=INTEGER},
+      </if>
+      <if test="spottingScope != null">
+        spotting_scope = #{spottingScope,jdbcType=INTEGER},
+      </if>
+      <if test="spottingAngle != null">
+        spotting_angle = #{spottingAngle,jdbcType=INTEGER},
+      </if>
+      <if test="camp != null">
+        camp = #{camp,jdbcType=CHAR},
+      </if>
+      <if test="amendRatio != null">
+        amend_ratio = #{amendRatio,jdbcType=INTEGER},
+      </if>
+      <if test="esignDrawingSite != null">
+        esign_drawing_site = #{esignDrawingSite,jdbcType=VARCHAR},
+      </if>
+      <if test="reformatory != null">
+        reformatory = #{reformatory,jdbcType=BIT},
+      </if>
+      <if test="box != null">
+        box = #{box,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where air_defense_code = #{airDefenseCode,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lonewolf.deepblue_airline.web.model.AirDefenseArtilleryInfo">
+    update air_defense_artillery_info
+    set name = #{name,jdbcType=VARCHAR},
+      antiaircraft = #{antiaircraft,jdbcType=INTEGER},
+      damage = #{damage,jdbcType=INTEGER},
+      full_damage = #{fullDamage,jdbcType=INTEGER},
+      firing_rate = #{firingRate,jdbcType=DECIMAL},
+      full_firing_rate = #{fullFiringRate,jdbcType=DECIMAL},
+      enhanced_upper_limit = #{enhancedUpperLimit,jdbcType=INTEGER},
+      spotting_scope = #{spottingScope,jdbcType=INTEGER},
+      spotting_angle = #{spottingAngle,jdbcType=INTEGER},
+      camp = #{camp,jdbcType=CHAR},
+      amend_ratio = #{amendRatio,jdbcType=INTEGER},
+      esign_drawing_site = #{esignDrawingSite,jdbcType=VARCHAR},
+      reformatory = #{reformatory,jdbcType=BIT},
+      box = #{box,jdbcType=VARCHAR}
+    where air_defense_code = #{airDefenseCode,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lonewolf.deepblue_airline.web.mapper.TorpedoInformationMapper">
+  <resultMap id="BaseResultMap" type="com.lonewolf.deepblue_airline.web.model.TorpedoInformation">
+    <id column="torpedo_code" jdbcType="INTEGER" property="torpedoCode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="lightning" jdbcType="INTEGER" property="lightning" />
+    <result column="dph" jdbcType="INTEGER" property="dph" />
+    <result column="full_dph" jdbcType="INTEGER" property="fullDph" />
+    <result column="hit" jdbcType="INTEGER" property="hit" />
+    <result column="damage" jdbcType="INTEGER" property="damage" />
+    <result column="full_damage" jdbcType="INTEGER" property="fullDamage" />
+    <result column="firing_rate" jdbcType="DECIMAL" property="firingRate" />
+    <result column="full_firing_rate" jdbcType="DECIMAL" property="fullFiringRate" />
+    <result column="enhanced_upper_limit" jdbcType="INTEGER" property="enhancedUpperLimit" />
+    <result column="ammunition" jdbcType="CHAR" property="ammunition" />
+    <result column="speed" jdbcType="INTEGER" property="speed" />
+    <result column="light_armor_ratio" jdbcType="INTEGER" property="lightArmorRatio" />
+    <result column="medium_armor_ratio" jdbcType="INTEGER" property="mediumArmorRatio" />
+    <result column="heavy_armor_ratio" jdbcType="INTEGER" property="heavyArmorRatio" />
+    <result column="damage_radius" jdbcType="INTEGER" property="damageRadius" />
+    <result column="range_min" jdbcType="INTEGER" property="rangeMin" />
+    <result column="range_max" jdbcType="INTEGER" property="rangeMax" />
+    <result column="intersperse_angle" jdbcType="INTEGER" property="intersperseAngle" />
+    <result column="camp" jdbcType="CHAR" property="camp" />
+    <result column="amend_ratio" jdbcType="INTEGER" property="amendRatio" />
+    <result column="damage_type" jdbcType="CHAR" property="damageType" />
+    <result column="efficiency" jdbcType="INTEGER" property="efficiency" />
+    <result column="box" jdbcType="VARCHAR" property="box" />
+    <result column="esign_drawing_site" jdbcType="VARCHAR" property="esignDrawingSite" />
+    <result column="reformatory" jdbcType="BIT" property="reformatory" />
+    <result column="apply" jdbcType="VARCHAR" property="apply" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    torpedo_code, name, lightning, dph, full_dph, hit, damage, full_damage, firing_rate, 
+    full_firing_rate, enhanced_upper_limit, ammunition, speed, light_armor_ratio, medium_armor_ratio, 
+    heavy_armor_ratio, damage_radius, range_min, range_max, intersperse_angle, camp, 
+    amend_ratio, damage_type, efficiency, box, esign_drawing_site, reformatory, apply
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from torpedo_information
+    where torpedo_code = #{torpedoCode,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from torpedo_information
+    where torpedo_code = #{torpedoCode,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lonewolf.deepblue_airline.web.model.TorpedoInformation">
+    insert into torpedo_information (torpedo_code, name, lightning, 
+      dph, full_dph, hit, 
+      damage, full_damage, firing_rate, 
+      full_firing_rate, enhanced_upper_limit, ammunition, 
+      speed, light_armor_ratio, medium_armor_ratio, 
+      heavy_armor_ratio, damage_radius, range_min, 
+      range_max, intersperse_angle, camp, 
+      amend_ratio, damage_type, efficiency, 
+      box, esign_drawing_site, reformatory, 
+      apply)
+    values (#{torpedoCode,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{lightning,jdbcType=INTEGER}, 
+      #{dph,jdbcType=INTEGER}, #{fullDph,jdbcType=INTEGER}, #{hit,jdbcType=INTEGER}, 
+      #{damage,jdbcType=INTEGER}, #{fullDamage,jdbcType=INTEGER}, #{firingRate,jdbcType=DECIMAL}, 
+      #{fullFiringRate,jdbcType=DECIMAL}, #{enhancedUpperLimit,jdbcType=INTEGER}, #{ammunition,jdbcType=CHAR}, 
+      #{speed,jdbcType=INTEGER}, #{lightArmorRatio,jdbcType=INTEGER}, #{mediumArmorRatio,jdbcType=INTEGER}, 
+      #{heavyArmorRatio,jdbcType=INTEGER}, #{damageRadius,jdbcType=INTEGER}, #{rangeMin,jdbcType=INTEGER}, 
+      #{rangeMax,jdbcType=INTEGER}, #{intersperseAngle,jdbcType=INTEGER}, #{camp,jdbcType=CHAR}, 
+      #{amendRatio,jdbcType=INTEGER}, #{damageType,jdbcType=CHAR}, #{efficiency,jdbcType=INTEGER}, 
+      #{box,jdbcType=VARCHAR}, #{esignDrawingSite,jdbcType=VARCHAR}, #{reformatory,jdbcType=BIT}, 
+      #{apply,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lonewolf.deepblue_airline.web.model.TorpedoInformation">
+    insert into torpedo_information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="torpedoCode != null">
+        torpedo_code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="lightning != null">
+        lightning,
+      </if>
+      <if test="dph != null">
+        dph,
+      </if>
+      <if test="fullDph != null">
+        full_dph,
+      </if>
+      <if test="hit != null">
+        hit,
+      </if>
+      <if test="damage != null">
+        damage,
+      </if>
+      <if test="fullDamage != null">
+        full_damage,
+      </if>
+      <if test="firingRate != null">
+        firing_rate,
+      </if>
+      <if test="fullFiringRate != null">
+        full_firing_rate,
+      </if>
+      <if test="enhancedUpperLimit != null">
+        enhanced_upper_limit,
+      </if>
+      <if test="ammunition != null">
+        ammunition,
+      </if>
+      <if test="speed != null">
+        speed,
+      </if>
+      <if test="lightArmorRatio != null">
+        light_armor_ratio,
+      </if>
+      <if test="mediumArmorRatio != null">
+        medium_armor_ratio,
+      </if>
+      <if test="heavyArmorRatio != null">
+        heavy_armor_ratio,
+      </if>
+      <if test="damageRadius != null">
+        damage_radius,
+      </if>
+      <if test="rangeMin != null">
+        range_min,
+      </if>
+      <if test="rangeMax != null">
+        range_max,
+      </if>
+      <if test="intersperseAngle != null">
+        intersperse_angle,
+      </if>
+      <if test="camp != null">
+        camp,
+      </if>
+      <if test="amendRatio != null">
+        amend_ratio,
+      </if>
+      <if test="damageType != null">
+        damage_type,
+      </if>
+      <if test="efficiency != null">
+        efficiency,
+      </if>
+      <if test="box != null">
+        box,
+      </if>
+      <if test="esignDrawingSite != null">
+        esign_drawing_site,
+      </if>
+      <if test="reformatory != null">
+        reformatory,
+      </if>
+      <if test="apply != null">
+        apply,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="torpedoCode != null">
+        #{torpedoCode,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="lightning != null">
+        #{lightning,jdbcType=INTEGER},
+      </if>
+      <if test="dph != null">
+        #{dph,jdbcType=INTEGER},
+      </if>
+      <if test="fullDph != null">
+        #{fullDph,jdbcType=INTEGER},
+      </if>
+      <if test="hit != null">
+        #{hit,jdbcType=INTEGER},
+      </if>
+      <if test="damage != null">
+        #{damage,jdbcType=INTEGER},
+      </if>
+      <if test="fullDamage != null">
+        #{fullDamage,jdbcType=INTEGER},
+      </if>
+      <if test="firingRate != null">
+        #{firingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="fullFiringRate != null">
+        #{fullFiringRate,jdbcType=DECIMAL},
+      </if>
+      <if test="enhancedUpperLimit != null">
+        #{enhancedUpperLimit,jdbcType=INTEGER},
+      </if>
+      <if test="ammunition != null">
+        #{ammunition,jdbcType=CHAR},
+      </if>
+      <if test="speed != null">
+        #{speed,jdbcType=INTEGER},
+      </if>
+      <if test="lightArmorRatio != null">
+        #{lightArmorRatio,jdbcType=INTEGER},
+      </if>
+      <if test="mediumArmorRatio != null">
+        #{mediumArmorRatio,jdbcType=INTEGER},
+      </if>
+      <if test="heavyArmorRatio != null">
+        #{heavyArmorRatio,jdbcType=INTEGER},
+      </if>
+      <if test="damageRadius != null">
+        #{damageRadius,jdbcType=INTEGER},
+      </if>
+      <if test="rangeMin != null">
+        #{rangeMin,jdbcType=INTEGER},
+      </if>
+      <if test="rangeMax != null">
+        #{rangeMax,jdbcType=INTEGER},
+      </if>
+      <if test="intersperseAngle != null">
+        #{intersperseAngle,jdbcType=INTEGER},
+      </if>
+      <if test="camp != null">
+        #{camp,jdbcType=CHAR},
+      </if>
+      <if test="amendRatio != null">
+        #{amendRatio,jdbcType=INTEGER},
+      </if>
+      <if test="damageType != null">
+        #{damageType,jdbcType=CHAR},
+      </if>
+      <if test="efficiency != null">
+        #{efficiency,jdbcType=INTEGER},
+      </if>
+      <if test="box != null">
+        #{box,jdbcType=VARCHAR},
+      </if>
+      <if test="esignDrawingSite != null">
+        #{esignDrawingSite,jdbcType=VARCHAR},
+      </if>
+      <if test="reformatory != null">
+        #{reformatory,jdbcType=BIT},
+      </if>
+      <if test="apply != null">
+        #{apply,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lonewolf.deepblue_airline.web.model.TorpedoInformation">
+    update torpedo_information
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="lightning != null">
+        lightning = #{lightning,jdbcType=INTEGER},
+      </if>
+      <if test="dph != null">
+        dph = #{dph,jdbcType=INTEGER},
+      </if>
+      <if test="fullDph != null">
+        full_dph = #{fullDph,jdbcType=INTEGER},
+      </if>
+      <if test="hit != null">
+        hit = #{hit,jdbcType=INTEGER},
+      </if>
+      <if test="damage != null">
+        damage = #{damage,jdbcType=INTEGER},
+      </if>
+      <if test="fullDamage != null">
+        full_damage = #{fullDamage,jdbcType=INTEGER},
+      </if>
+      <if test="firingRate != null">
+        firing_rate = #{firingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="fullFiringRate != null">
+        full_firing_rate = #{fullFiringRate,jdbcType=DECIMAL},
+      </if>
+      <if test="enhancedUpperLimit != null">
+        enhanced_upper_limit = #{enhancedUpperLimit,jdbcType=INTEGER},
+      </if>
+      <if test="ammunition != null">
+        ammunition = #{ammunition,jdbcType=CHAR},
+      </if>
+      <if test="speed != null">
+        speed = #{speed,jdbcType=INTEGER},
+      </if>
+      <if test="lightArmorRatio != null">
+        light_armor_ratio = #{lightArmorRatio,jdbcType=INTEGER},
+      </if>
+      <if test="mediumArmorRatio != null">
+        medium_armor_ratio = #{mediumArmorRatio,jdbcType=INTEGER},
+      </if>
+      <if test="heavyArmorRatio != null">
+        heavy_armor_ratio = #{heavyArmorRatio,jdbcType=INTEGER},
+      </if>
+      <if test="damageRadius != null">
+        damage_radius = #{damageRadius,jdbcType=INTEGER},
+      </if>
+      <if test="rangeMin != null">
+        range_min = #{rangeMin,jdbcType=INTEGER},
+      </if>
+      <if test="rangeMax != null">
+        range_max = #{rangeMax,jdbcType=INTEGER},
+      </if>
+      <if test="intersperseAngle != null">
+        intersperse_angle = #{intersperseAngle,jdbcType=INTEGER},
+      </if>
+      <if test="camp != null">
+        camp = #{camp,jdbcType=CHAR},
+      </if>
+      <if test="amendRatio != null">
+        amend_ratio = #{amendRatio,jdbcType=INTEGER},
+      </if>
+      <if test="damageType != null">
+        damage_type = #{damageType,jdbcType=CHAR},
+      </if>
+      <if test="efficiency != null">
+        efficiency = #{efficiency,jdbcType=INTEGER},
+      </if>
+      <if test="box != null">
+        box = #{box,jdbcType=VARCHAR},
+      </if>
+      <if test="esignDrawingSite != null">
+        esign_drawing_site = #{esignDrawingSite,jdbcType=VARCHAR},
+      </if>
+      <if test="reformatory != null">
+        reformatory = #{reformatory,jdbcType=BIT},
+      </if>
+      <if test="apply != null">
+        apply = #{apply,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where torpedo_code = #{torpedoCode,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lonewolf.deepblue_airline.web.model.TorpedoInformation">
+    update torpedo_information
+    set name = #{name,jdbcType=VARCHAR},
+      lightning = #{lightning,jdbcType=INTEGER},
+      dph = #{dph,jdbcType=INTEGER},
+      full_dph = #{fullDph,jdbcType=INTEGER},
+      hit = #{hit,jdbcType=INTEGER},
+      damage = #{damage,jdbcType=INTEGER},
+      full_damage = #{fullDamage,jdbcType=INTEGER},
+      firing_rate = #{firingRate,jdbcType=DECIMAL},
+      full_firing_rate = #{fullFiringRate,jdbcType=DECIMAL},
+      enhanced_upper_limit = #{enhancedUpperLimit,jdbcType=INTEGER},
+      ammunition = #{ammunition,jdbcType=CHAR},
+      speed = #{speed,jdbcType=INTEGER},
+      light_armor_ratio = #{lightArmorRatio,jdbcType=INTEGER},
+      medium_armor_ratio = #{mediumArmorRatio,jdbcType=INTEGER},
+      heavy_armor_ratio = #{heavyArmorRatio,jdbcType=INTEGER},
+      damage_radius = #{damageRadius,jdbcType=INTEGER},
+      range_min = #{rangeMin,jdbcType=INTEGER},
+      range_max = #{rangeMax,jdbcType=INTEGER},
+      intersperse_angle = #{intersperseAngle,jdbcType=INTEGER},
+      camp = #{camp,jdbcType=CHAR},
+      amend_ratio = #{amendRatio,jdbcType=INTEGER},
+      damage_type = #{damageType,jdbcType=CHAR},
+      efficiency = #{efficiency,jdbcType=INTEGER},
+      box = #{box,jdbcType=VARCHAR},
+      esign_drawing_site = #{esignDrawingSite,jdbcType=VARCHAR},
+      reformatory = #{reformatory,jdbcType=BIT},
+      apply = #{apply,jdbcType=VARCHAR}
+    where torpedo_code = #{torpedoCode,jdbcType=INTEGER}
+  </update>
+</mapper>
