@@ -2,6 +2,8 @@ package com.lonewolf.deepblue_airline.web.model;
 
 import java.math.BigDecimal;
 
+import com.alibaba.fastjson.JSON;
+
 public class ShipboardArtilleryInformation {
     private Integer shellCode;
 
@@ -212,4 +214,10 @@ public class ShipboardArtilleryInformation {
     public void setEsignDrawingSite(String esignDrawingSite) {
         this.esignDrawingSite = esignDrawingSite == null ? null : esignDrawingSite.trim();
     }
+
+	@Override
+	public String toString() {
+		return JSON.toJSONString(this);
+	}
+    
 }

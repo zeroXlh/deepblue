@@ -5,7 +5,7 @@
 $(document).ready(function() {
 	  // 在这里写你的代码...
 //	console.log(authPermissions);
-	scan();
+//	scan();
 });
 
 function scan() {

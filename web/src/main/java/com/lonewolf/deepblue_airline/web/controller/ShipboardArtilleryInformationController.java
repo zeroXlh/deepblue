@@ -29,7 +29,7 @@ import com.lonewolf.deepblue_airline.web.utils.ResponseData;
  * @date: 2018-5-30
  */
 @RestController
-@RequestMapping("/lone-wolf/shipboard")
+@RequestMapping("/lone-wolf/web/shipboard")
 public class ShipboardArtilleryInformationController {
 	private static final Logger logger = LoggerFactory.getLogger(ShipboardArtilleryInformationController.class);
 
@@ -47,7 +47,7 @@ public class ShipboardArtilleryInformationController {
 	@GetMapping("/page")
 	public ResponseData<PageInfo<ShipboardArtilleryInformation>> page(ShipboardArtilleryInformation information,
 			Integer pageNum, Integer pageSize) {
-		logger.info("分页舰炮信息，请求入参：【{}】", information);
+		logger.info("分页舰炮信息，请求入参：【{}，{}，{}】", information, pageNum, pageSize);
 		ResponseData<PageInfo<ShipboardArtilleryInformation>> resp = new ResponseData<>(ResponseCode.SUCC);
 
 		try {
@@ -94,7 +94,8 @@ public class ShipboardArtilleryInformationController {
 
 			// 保存图片
 			// if (Objects.nonNull(file) && !file.isEmpty())
-			// information.setBannerPath(saveBanner(file, subject.getFolderPath(),
+			// information.setBannerPath(saveBanner(file,
+			// subject.getFolderPath(),
 			// information.getPeriod())); // 访问绝对路径
 
 			resp.setCode(ResponseCode.SUCC);
@@ -106,16 +107,17 @@ public class ShipboardArtilleryInformationController {
 		return resp;
 	}
 
-//	private String saveBanner(MultipartFile file, String path, String period) throws IOException {
-//		// 保存文件名与期数对应，如：第6期文件名为6.jpg
-//		return FilePathUtils.saveFile(file, Paths.get(FilePathUtils.BANNER_PATH.toString(), path),
-//				FilePathUtils.getFilename(file, period));
-//	}
+	// private String saveBanner(MultipartFile file, String path, String period)
+	// throws IOException {
+	// // 保存文件名与期数对应，如：第6期文件名为6.jpg
+	// return FilePathUtils.saveFile(file,
+	// Paths.get(FilePathUtils.BANNER_PATH.toString(), path),
+	// FilePathUtils.getFilename(file, period));
+	// }
 
 	@RequestMapping(value = "/hoper/backweb/updateProduct", method = RequestMethod.POST)
 	// @Auth("PRODUCT:UPDATE_PRODUCT")
-	public ResponseData<String> updateProduct(
-			HttpSession session) {
+	public ResponseData<String> updateProduct(HttpSession session) {
 		logger.info("更新产品，参数：[{}]");
 		ResponseData<String> resp = new ResponseData<>(ResponseCode.FAIL);
 
@@ -125,7 +127,7 @@ public class ShipboardArtilleryInformationController {
 			resp.setCode(ResponseCode.SUCC);
 			resp.setMsg("success");
 		} catch (Exception e) {
-			logger.error("更新产品失败，jjsProductReq ={}",  e);
+			logger.error("更新产品失败，jjsProductReq ={}", e);
 			resp.setMsg(e.getMessage());
 		}
 		return resp;

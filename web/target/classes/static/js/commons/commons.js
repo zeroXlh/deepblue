@@ -271,11 +271,18 @@ var genderMapping = {
 		"F" : "女"
 };
 function genderFormat(value, row, index) {
+//	if (pcg_fun.isEmpty(value))
+//		return "-";
+//	var v = genderMapping[value];
+//	if (pcg_fun.isEmpty(v))
+//		return value;
+	return commonFormat(value, genderMapping);
+}
+
+function commonFormat(value, json) {
 	if (pcg_fun.isEmpty(value))
 		return "-";
-	var v = genderMapping[value];
-	if (pcg_fun.isEmpty(v))
-		return value;
-	return v;
+	var rs = json[value];
+	return pcg_fun.isEmpty(rs) ? value : rs;
 }
 

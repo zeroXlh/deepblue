@@ -1,5 +1,7 @@
 package com.lonewolf.deepblue_airline.web.model;
 
+import com.alibaba.fastjson.JSON;
+
 public class ShellAttributes {
     private Integer shellCode;
 
@@ -160,4 +162,9 @@ public class ShellAttributes {
     public void setEfficiency(Integer efficiency) {
         this.efficiency = efficiency;
     }
+    
+    @Override
+	public String toString() {
+		return JSON.toJSONString(this);
+	}
 }

@@ -69,3 +69,7 @@ var custTypeCombo = [
 function loadCustTypeCombo(id) {
 	pcg_fun.loadCommonData(id, custTypeCombo, "value", "text", null);
 }
+var booleanCombo = [
+	{"value" : true, "text" : "是"},
+	{"value" : false, "text" : "否"}
+];

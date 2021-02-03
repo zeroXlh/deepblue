@@ -68,11 +68,11 @@
 		var data = $("#loginForm").serialize();//获取值
 		var submitData = decodeURIComponent(data, true);//防止中文乱码
 // 		alert(submitData);
-		var url = "/hoper/backweb/login";
+		var url = "/lone-wolf/web/auxiliary/login";
 		jQuery.post(url, submitData, function(data) {
 // 			console.log(data);
 			if (1 == data.code) {
-                location.replace("/hoper/backweb/main");
+                location.replace("/lone-wolf/web/main");
                 //top.location.href="/hoper/backweb/main";
 			} else if (0 == data.code) {
 				$("#login_info >span").text(data.msg);
