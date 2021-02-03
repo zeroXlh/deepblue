@@ -36,6 +36,7 @@ public class ShipboardArtilleryBusinessService {
 	public int add(ShipboardArtilleryInformation information, ShellAttributes shellAttributes) throws Exception {
 
 //		information.setDamage(information.getHitCardinal() * information.getHitInstance());
+		
 		shipboardArtilleryService.add(information);
 		logger.info("after insert：{}", information);
 		

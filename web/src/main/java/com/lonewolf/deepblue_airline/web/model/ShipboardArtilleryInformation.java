@@ -214,10 +214,10 @@ public class ShipboardArtilleryInformation {
     public void setEsignDrawingSite(String esignDrawingSite) {
         this.esignDrawingSite = esignDrawingSite == null ? null : esignDrawingSite.trim();
     }
-
-	@Override
+    
+    @Override
 	public String toString() {
 		return JSON.toJSONString(this);
 	}
-    
+
 }

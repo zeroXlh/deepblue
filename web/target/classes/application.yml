@@ -9,8 +9,8 @@ spring:
   profiles:
     active: default
   application:
-    name: back-web
-    abbr: HOPER
+    name: deepblue-web
+    abbr: deepblue
   output:
     ansi:
       enabled: detect

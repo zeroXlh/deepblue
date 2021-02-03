@@ -60,6 +60,7 @@
     where shell_code = #{shellCode,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.lonewolf.deepblue_airline.web.model.ShipboardArtilleryInformation">
+    <selectKey keyColumn="shell_code" keyProperty="shellCode" resultType="int" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
     insert into shipboard_artillery_information (shell_code, name, rarity, 
       scale, dph, full_dph, hit, 
       damage, full_damage, firing_rate, 
@@ -76,6 +77,7 @@
       #{box,jdbcType=VARCHAR}, #{esignDrawingSite,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lonewolf.deepblue_airline.web.model.ShipboardArtilleryInformation">
+    <selectKey keyColumn="shell_code" keyProperty="shellCode" resultType="int" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
     insert into shipboard_artillery_information
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="shellCode != null">
